@@ -3,12 +3,10 @@ import { BaseBox, InputForm, PrimaryButton } from "components";
 import { routes } from "data";
 import Link from "next/link";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { FiUser, FiLock } from "react-icons/fi";
-import { Text, TextBold, theme, Title } from "styles";
+import { FiLock, FiUser } from "react-icons/fi";
+import { TextBold, theme, Title, Text } from "styles";
 
-const LoginPage = () => {
-  const { register } = useForm()
+const Register = () => {
   return (
     <Container
       modifiers={[
@@ -19,33 +17,34 @@ const LoginPage = () => {
       <BaseBox width={"450px"} boxShadow>
         <Stack gap={14}>
           <Stack gap={4}>
-            <Title>Login</Title>
-            <Text>
-              You don’t think you should login first and behave like human not
-              robot.
-            </Text>
+            <Title>Register</Title>
+            <Text>Well.. why not?</Text>
           </Stack>
           <Stack gap={4}>
+            <InputForm type={"text"} placeholder={"Full Name"} />
+            <InputForm type={"text"} placeholder={"Nick Name"} />
             <InputForm
               type={"email"}
               placeholder={"Email address"}
               icon={{ component: FiUser, size: 24 }}
-              register={register("email")}
             />
             <InputForm
               type={"password"}
               placeholder={"Password"}
               icon={{ component: FiLock, size: 24 }}
             />
+            <InputForm
+              type={"password"}
+              placeholder={"Repeat Password"}
+              icon={{ component: FiLock, size: 24 }}
+            />
           </Stack>
           <Stack gap={14}>
-            <PrimaryButton>Sign in</PrimaryButton>
+            <PrimaryButton>Zali to cvijece</PrimaryButton>
             <Cluster alignItems={"center"}>
-              <Text>You are New?</Text>
-              <Link href={routes.register}>
-                <TextBold style={{ color: theme.color.red }}>
-                  Create new
-                </TextBold>
+              <Text>YoU ArE nOt NeW?</Text>
+              <Link href={routes.login}>
+                <TextBold style={{ color: theme.color.red }}>Login</TextBold>
               </Link>
             </Cluster>
           </Stack>
@@ -55,4 +54,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Register;
