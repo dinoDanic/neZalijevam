@@ -1,11 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import {
-  BorderMods,
-  Box,
-  Cluster,
-  Stack,
-} from "@kodiui/kodiui";
+import { BorderMods, Box, Cluster, CornerMods, Stack } from "@kodiui/kodiui";
 import { FC, InputHTMLAttributes } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { theme } from "styles";
@@ -13,16 +8,12 @@ import { Icon } from "types";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  icon?:  Icon;
+  icon?: Icon;
   register?: UseFormRegisterReturn<string>;
   error?: FieldError | undefined;
 }
 
-export const BaseInput: FC<InputProps> = ({
-  label,
-  icon,
-  ...props
-}) => {
+export const BaseInput: FC<InputProps> = ({ label, icon, ...props }) => {
   console.log(icon);
   if (label) {
     return (
@@ -54,6 +45,11 @@ const InputFocusCss = css`
 export const baseInputCss = css`
   outline: none;
   border: none;
+  font-size: 1.31rem;
+  flex:1;
+  &:-webkit-autofill {
+    font-size: 1.31rem;
+  }
 `;
 
 const InputStyled = styled.input`
@@ -61,7 +57,8 @@ const InputStyled = styled.input`
 `;
 
 const Icon = styled.div``;
+
 const StyledBox = styled(Box)`
   border: 2px solid black;
-  border-radius: 16px;
+  ${CornerMods({ corners: theme.corners.base })};
 `;

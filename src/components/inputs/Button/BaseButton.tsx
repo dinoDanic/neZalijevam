@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import {
   BorderMods,
   Cluster,
+  ColorMods,
   CornerMods,
   CursorMods,
   FlexMods,
@@ -37,7 +38,8 @@ export const BaseButton: FC<ButtonProps> = ({
 };
 
 export const BaseButtonCss = css`
-  ${BorderMods.None}
+  ${BorderMods({ border: "thick", borderColor: theme.color.black })}
+  ${ColorMods({ color: theme.color.black })}
   ${FlexMods.Parent({ alignItems: "center", justifyContent: "center" })}
   ${CursorMods.Pointer}
   ${PaddingMods.Ends(4)}

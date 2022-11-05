@@ -1,4 +1,5 @@
 import { Global, css } from "@emotion/react";
+import { theme } from "./theme";
 
 const normalize = css`
   * {
@@ -6,6 +7,16 @@ const normalize = css`
     padding: 0;
     box-spacing: border-box;
     font-family: "Montserrat", sans-serif;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+  a {
+    text-decoration: none;
+    color: ${theme.color.red};
   }
 `;
 

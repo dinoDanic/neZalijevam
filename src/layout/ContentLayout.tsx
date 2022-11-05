@@ -1,30 +1,30 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import {
   Box,
   Cluster,
+  ColorMods,
   Container,
-  FlexMods,
   MarginMods,
   Overflow,
   SizeMods,
-} from '@kodiui/kodiui'
-import { routes } from 'data'
-import { useRouter } from 'next/router'
-import { FC, ReactNode } from 'react'
+} from "@kodiui/kodiui";
+import { useRouter } from "next/router";
+import { FC, ReactNode } from "react";
+import { theme } from "styles";
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
-const EMPTY_LAYOUT = [routes.login]
+const EMPTY_LAYOUT: string[] = [];
 
 export const ContentLayout: FC<Props> = ({ children }) => {
-  const { asPath } = useRouter()
+  const { asPath } = useRouter();
 
-  const emptyLayout = EMPTY_LAYOUT.includes(asPath)
+  const emptyLayout = EMPTY_LAYOUT.includes(asPath);
 
   if (emptyLayout) {
-    return <>{children}</>
+    return <>{children}</>;
   }
 
   return (
@@ -35,21 +35,19 @@ export const ContentLayout: FC<Props> = ({ children }) => {
         </Box>
       </Cont>
     </Body>
-  )
-}
+  );
+};
 
 const Body = styled(Container)`
   ${SizeMods.FillScreen};
-  ${FlexMods.Parent({ direction: 'column' })}
-`
+  ${ColorMods({ background: theme.color.green })}
+`;
 
 const Cont = styled(Container)`
-  ${FlexMods.Parent({ direction: 'row' })}
-  ${FlexMods.Child({ grow: 1 })} 
   ${Overflow.Hidden}
-`
+`;
 
 const Content = styled(Cluster)`
-  ${SizeMods({ maxWidth: '1600px' })}
+  ${SizeMods({ maxWidth: "1600px" })}
   ${MarginMods.HAuto}
-`
+`;

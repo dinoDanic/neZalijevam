@@ -28,10 +28,12 @@ declare module '@emotion/react' {
 
     }
     boxShadow: {
-      0: '0px 3px 8px rgba(0, 0, 0, 0.15)'
+      0: "0 4px 0 0 #18191F ;",
+      1: "0 2px 0 0 #18191F ;",
+      2: "0 0px 0 0 #18191F ;",
     }
     transition: {
-      base: '0.2s ease all'
+      base: '0.1s ease all'
     }
     corners: {
       base: 4

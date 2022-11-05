@@ -1,34 +1,31 @@
-import {
-  BorderMods,
-  Box,
-  ColorMods,
-  CornerMods,
-  Mods,
-  Props,
-} from '@kodiui/kodiui'
-import React, { FC, ReactNode } from 'react'
-import { theme } from 'styles'
+import { BorderMods, Box, CornerMods, Mods, Props } from "@kodiui/kodiui";
+import React, { FC, ReactNode } from "react";
+import { theme } from "styles";
 
 export interface BoxProps extends Mods, Props {
-  children: ReactNode
+  children: ReactNode;
+  boxShadow?: boolean;
 }
 
-export const BaseBox: FC<BoxProps> = ({ children, space = 4, ...props }) => {
+export const BaseBox: FC<BoxProps> = ({
+  children,
+  space = 12,
+  boxShadow,
+  ...props
+}) => {
   return (
     <Box
       space={space}
+      background={theme.color.white}
       modifiers={[
+        BorderMods({ border: "thick" }),
         CornerMods({ corners: theme.corners.base }),
-        BorderMods({
-          border: 'thin',
-          borderColor: theme.color.primary.ElementStroke,
-        }),
-        ColorMods({ background: theme.color.primary.White }),
-        `box-shadow: ${theme.boxShadow[1]}`,
+        `box-shadow: ${boxShadow && theme.boxShadow[0]} `,
         props.modifiers,
       ]}
+      {...props}
     >
       {children}
     </Box>
-  )
-}
+  );
+};
