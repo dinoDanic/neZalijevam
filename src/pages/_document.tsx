@@ -8,6 +8,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <body>
         <Main />

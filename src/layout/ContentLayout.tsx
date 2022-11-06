@@ -4,13 +4,14 @@ import {
   Cluster,
   ColorMods,
   Container,
+  FlexMods,
   MarginMods,
-  Overflow,
   SizeMods,
 } from "@kodiui/kodiui";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 import { theme } from "styles";
+import { Menu } from "./menu";
 
 interface Props {
   children: ReactNode;
@@ -29,25 +30,28 @@ export const ContentLayout: FC<Props> = ({ children }) => {
 
   return (
     <Body>
-      <Cont>
-        <Box space={8} modifiers={[SizeMods.FullWidth]}>
-          <Content>{children}</Content>
-        </Box>
-      </Cont>
+      <Box
+        space={4}
+        modifiers={[
+          SizeMods.FillScreen,
+          FlexMods.Parent({ direction: "column" }),
+        ]}
+      >
+        <Content>{children}</Content>
+        <Menu />
+      </Box>
     </Body>
   );
 };
 
 const Body = styled(Container)`
   ${SizeMods.FillScreen};
+  ${FlexMods.Parent({ direction: "column" })}
   ${ColorMods({ background: theme.color.green })}
-`;
-
-const Cont = styled(Container)`
-  ${Overflow.Hidden}
 `;
 
 const Content = styled(Cluster)`
   ${SizeMods({ maxWidth: "1600px" })}
   ${MarginMods.HAuto}
+  flex: 1;
 `;

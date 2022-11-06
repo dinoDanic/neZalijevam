@@ -8,7 +8,6 @@ import {
   CursorMods,
   FlexMods,
   PaddingMods,
-  SizeMods,
 } from "@kodiui/kodiui";
 import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 import { SubTitle, theme } from "styles";

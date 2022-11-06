@@ -60,3 +60,13 @@ export const SubTitle = styled.h2`
   ${ExtraBoldStyle};
   font-size: 0.9rem;
 `;
+
+export const BigTitleStyle = css`
+  font-family: "Bungee Shade", cursive;
+  font-size: 3rem;
+`;
+
+export const BigTitle = styled.h1<ColorMods>`
+  ${BigTitleStyle}
+  ${colors};
+`;
