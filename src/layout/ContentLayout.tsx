@@ -8,6 +8,7 @@ import {
   MarginMods,
   SizeMods,
 } from "@kodiui/kodiui";
+import { routes } from "data";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 import { theme } from "styles";
@@ -17,7 +18,7 @@ interface Props {
   children: ReactNode;
 }
 
-const EMPTY_LAYOUT: string[] = [];
+const EMPTY_LAYOUT: string[] = [routes.dashboard];
 
 export const ContentLayout: FC<Props> = ({ children }) => {
   const { asPath } = useRouter();
@@ -25,7 +26,12 @@ export const ContentLayout: FC<Props> = ({ children }) => {
   const emptyLayout = EMPTY_LAYOUT.includes(asPath);
 
   if (emptyLayout) {
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        <Menu />
+      </>
+    );
   }
 
   return (
