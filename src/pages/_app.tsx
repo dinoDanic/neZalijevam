@@ -1,14 +1,20 @@
-import { ContentLayout } from "layout";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider, ContentLayout } from "layout";
+import { queryClient } from "lib/reactQuery";
 import type { AppProps } from "next/app";
 import { Normalize } from "styles";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Normalize />
-      <ContentLayout>
-        <Component {...pageProps} />
-      </ContentLayout>
+      <QueryClientProvider client={queryClient}>
+        <Normalize />
+        <AuthProvider>
+          <ContentLayout>
+            <Component {...pageProps} />
+          </ContentLayout>
+        </AuthProvider>
+      </QueryClientProvider>
     </>
   );
 }

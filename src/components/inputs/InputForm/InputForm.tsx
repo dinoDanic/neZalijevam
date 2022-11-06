@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import { Box, Container, FlexMods, PaddingMods } from "@kodiui/kodiui";
-import { BaseInput, baseInputCss, InputProps } from "../Input/BaseInput";
+import { Box, ColorMods, Container, PaddingMods } from "@kodiui/kodiui";
+import { BaseInput, baseInputCss } from "../Input/BaseInput";
+import { InputProps } from "types";
+import { ExpandAnimation } from "layout";
+import { Text, theme } from "styles";
+import { css } from "@emotion/react";
 
 export const InputForm: FC<InputProps> = ({ register, error, ...rest }) => {
+  const haveError = Boolean(error?.message);
   const err = (
     <Box
-      modifiers={[
-        FlexMods.Parent({ justifyContent: "flex-end" }),
-        // ColorMods({ color: theme.color.primary.Magenta }),
-        PaddingMods.Sides(0),
-      ]}
+      modifiers={[ColorMods({ color: theme.color.red }), PaddingMods.Sides(0)]}
     >
       {error?.message}
     </Box>
@@ -18,12 +19,17 @@ export const InputForm: FC<InputProps> = ({ register, error, ...rest }) => {
 
   return (
     <Container>
-      {error && err}
-      <Input {...register} {...rest} />
+      <Input haveError={haveError} register={register} {...rest} />
+      <ExpandAnimation active={haveError}>
+        <Text>{error && err}</Text>
+      </ExpandAnimation>
     </Container>
   );
 };
 
+const AlertStyle = css``;
+
 const Input = styled(BaseInput)`
-  ${baseInputCss}
+  ${baseInputCss};
+  ${({ haveError }) => haveError && AlertStyle}
 `;

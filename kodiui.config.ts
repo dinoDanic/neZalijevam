@@ -2,9 +2,9 @@ module.exports = {
   space: {
     step: {
       base: 4,
-      xs: 2,
-      s: 2,
-      m: 2,
+      xs: 4,
+      s: 4,
+      m: 4,
       lg: 4,
       xl: 4,
       xxl: 4,

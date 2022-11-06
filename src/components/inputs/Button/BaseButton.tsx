@@ -11,7 +11,7 @@ import {
   SizeMods,
 } from "@kodiui/kodiui";
 import { ButtonHTMLAttributes, FC, ReactNode } from "react";
-import { theme } from "styles";
+import { SubTitle, theme } from "styles";
 import { Icon } from "types";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,7 +30,11 @@ export const BaseButton: FC<ButtonProps> = ({
   return (
     <Button {...props} disabled={loading === true}>
       <Cluster alignItems={"center"}>
-        {loading ? <>loading..</> : children}
+        {loading ? (
+          <SubTitle color={theme.color.black}>loading..</SubTitle>
+        ) : (
+          children
+        )}
         {icon && <>{icon.component({ size: icon.size })}</>}
       </Cluster>
     </Button>

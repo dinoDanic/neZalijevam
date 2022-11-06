@@ -8,7 +8,7 @@ import { BaseButton, ButtonProps } from "../BaseButton";
 export const PrimaryButton: FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <Button {...props}>
-      <SubTitle>{children}</SubTitle>
+      <SubTitle color={theme.color.black}>{children}</SubTitle>
     </Button>
   );
 };

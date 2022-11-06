@@ -10,8 +10,8 @@ export interface ColorMods {
 }
 
 const colors = ({ color, background }: ColorMods) => css`
-  color: ${color},
-  background: ${background}
+  color: ${color};
+  background: ${background};
 `;
 
 export const ExtraBoldStyle = css`
@@ -32,27 +32,31 @@ export const Bold = styled.p`
   ${BoldStyle}
 `;
 
-export const Text = styled.p<ColorMods>`
+export const TextStyle = css`
   ${MediumStyle};
   color: ${theme.color.black800};
+  font-size: 0.9rem;
+`;
+
+export const Text = styled.p<ColorMods>`
+  ${TextStyle}
   ${({ color, background }) => colors({ color, background })};
-  font-size: 1.06rem;
 `;
 
 export const TextBold = styled.p<ColorMods>`
   ${BoldStyle};
   color: ${theme.color.black800};
   ${({ color, background }) => colors({ color, background })};
-  font-size: 1.06rem;
+  font-size: 0.9rem;
 `;
 
 export const Title = styled.h1<ColorMods>`
   ${ExtraBoldStyle};
   ${colors};
-  font-size: 2.37rem;
+  font-size: 1.5rem;
 `;
 
 export const SubTitle = styled.h2`
   ${ExtraBoldStyle};
-  font-size: 1.312rem;
+  font-size: 0.9rem;
 `;

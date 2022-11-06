@@ -1,5 +1,6 @@
 import { GraphQLClient } from 'graphql-request';
-import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { RequestInit } from 'graphql-request/dist/types.dom';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -23,6 +24,8 @@ export type CreateUserInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
+  fullName: Scalars['String'];
+  nickName: Scalars['String'];
   password: Scalars['String'];
 };
 
@@ -41,7 +44,7 @@ export type Query = {
   /** Login a user */
   login?: Maybe<Scalars['String']>;
   /** Me */
-  me?: Maybe<User>;
+  me: User;
   /** An example field added by the generator */
   testField: Scalars['String'];
 };
@@ -56,8 +59,10 @@ export type QueryLoginArgs = {
 export type User = {
   __typename?: 'User';
   email?: Maybe<Scalars['String']>;
+  fullName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
   isSuperadmin?: Maybe<Scalars['Boolean']>;
+  nickName?: Maybe<Scalars['String']>;
 };
 
 export type CreateUserMutationVariables = Exact<{
@@ -66,6 +71,19 @@ export type CreateUserMutationVariables = Exact<{
 
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser?: { __typename?: 'User', id?: string | null } | null };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id?: string | null, email?: string | null, nickName?: string | null, fullName?: string | null, isSuperadmin?: boolean | null } };
+
+export type LoginQueryVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+
+export type LoginQuery = { __typename?: 'Query', login?: string | null };
 
 
 export const CreateUserDocument = `
@@ -86,5 +104,49 @@ export const useCreateUserMutation = <
     useMutation<CreateUserMutation, TError, CreateUserMutationVariables, TContext>(
       ['createUser'],
       (variables?: CreateUserMutationVariables) => fetcher<CreateUserMutation, CreateUserMutationVariables>(client, CreateUserDocument, variables, headers)(),
+      options
+    );
+export const MeDocument = `
+    query me {
+  me {
+    id
+    email
+    nickName
+    fullName
+    isSuperadmin
+  }
+}
+    `;
+export const useMeQuery = <
+      TData = MeQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables?: MeQueryVariables,
+      options?: UseQueryOptions<MeQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<MeQuery, TError, TData>(
+      variables === undefined ? ['me'] : ['me', variables],
+      fetcher<MeQuery, MeQueryVariables>(client, MeDocument, variables, headers),
+      options
+    );
+export const LoginDocument = `
+    query login($email: String!, $password: String!) {
+  login(email: $email, password: $password)
+}
+    `;
+export const useLoginQuery = <
+      TData = LoginQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: LoginQueryVariables,
+      options?: UseQueryOptions<LoginQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<LoginQuery, TError, TData>(
+      ['login', variables],
+      fetcher<LoginQuery, LoginQueryVariables>(client, LoginDocument, variables, headers),
       options
     );

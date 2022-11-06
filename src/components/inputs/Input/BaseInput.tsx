@@ -1,20 +1,17 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { BorderMods, Box, Cluster, CornerMods, Stack } from "@kodiui/kodiui";
-import { FC, InputHTMLAttributes } from "react";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import { theme } from "styles";
-import { Icon } from "types";
+import { Box, Cluster, CornerMods, Stack } from "@kodiui/kodiui";
+import { FC } from "react";
+import { TextStyle, theme } from "styles";
+import { InputProps } from "types";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  icon?: Icon;
-  register?: UseFormRegisterReturn<string>;
-  error?: FieldError | undefined;
-}
-
-export const BaseInput: FC<InputProps> = ({ label, icon, ...props }) => {
-  console.log(icon);
+export const BaseInput: FC<InputProps> = ({
+  label,
+  icon,
+  register,
+  haveError = false,
+  ...props
+}) => {
   if (label) {
     return (
       <Stack>
@@ -25,31 +22,27 @@ export const BaseInput: FC<InputProps> = ({ label, icon, ...props }) => {
   }
 
   return (
-    <StyledBox space={3}>
+    <StyledBox haveError={haveError} space={3} modSpace={{ s: 3, xl: 3, m: 3 }}>
       <Cluster>
         {icon && <>{icon.component({ size: icon.size })}</>}
-        <InputStyled {...props} />
+        <InputStyled {...register} {...props} />
       </Cluster>
     </StyledBox>
   );
 };
 
-const InputFocusCss = css`
-  box-shadow: ${theme.boxShadow[0]};
-  ${BorderMods({
-    /* borderColor: theme.color.primary.BodyTextNotice, */
-    border: "thin",
-  })};
-`;
-
 export const baseInputCss = css`
+  ${TextStyle}
   outline: none;
   border: none;
-  font-size: 1.31rem;
-  flex:1;
+  flex: 1;
   &:-webkit-autofill {
-    font-size: 1.31rem;
+    font-size: inherit;
   }
+`;
+
+const inputErrorCss = css`
+  border: 3px solid ${theme.color.red};
 `;
 
 const InputStyled = styled.input`
@@ -58,7 +51,8 @@ const InputStyled = styled.input`
 
 const Icon = styled.div``;
 
-const StyledBox = styled(Box)`
+const StyledBox = styled(Box)<{ haveError: boolean }>`
   border: 2px solid black;
   ${CornerMods({ corners: theme.corners.base })};
+  ${({ haveError }) => haveError && inputErrorCss}
 `;

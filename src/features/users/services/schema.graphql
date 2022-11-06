@@ -1,5 +1,19 @@
 mutation createUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
- }
+  }
+}
+
+query me {
+  me {
+    id
+    email
+    nickName
+    fullName
+    isSuperadmin
+  }
+}
+
+query login($email: String!, $password: String!) {
+  login(email: $email, password: $password)
 }
