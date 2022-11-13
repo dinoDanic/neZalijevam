@@ -17,3 +17,11 @@ query me {
 query login($email: String!, $password: String!) {
   login(email: $email, password: $password)
 }
+
+query getAllUsers { getAllUsers {
+    id
+    email
+    fullName
+  }
+}
+

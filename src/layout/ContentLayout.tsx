@@ -6,9 +6,10 @@ import {
   Container,
   FlexMods,
   MarginMods,
+  PositionMods,
   SizeMods,
+  ZIndex,
 } from "@kodiui/kodiui";
-import { routes } from "data";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 import { theme } from "styles";
@@ -18,7 +19,7 @@ interface Props {
   children: ReactNode;
 }
 
-const EMPTY_LAYOUT: string[] = [routes.dashboard];
+const EMPTY_LAYOUT: string[] = [];
 
 export const ContentLayout: FC<Props> = ({ children }) => {
   const { asPath } = useRouter();
@@ -57,7 +58,12 @@ const Body = styled(Container)`
 `;
 
 const Content = styled(Cluster)`
-  ${SizeMods({ maxWidth: "1600px" })}
-  ${MarginMods.HAuto}
+  ${SizeMods({ maxWidth: "1600px" })};
+  ${FlexMods.Parent({
+    direction: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  })};
+  ${MarginMods.HAuto};
   flex: 1;
 `;

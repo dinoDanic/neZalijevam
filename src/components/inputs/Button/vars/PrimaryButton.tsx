@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ifHovered } from "@kodiui/kodiui";
+import { ifDisabled, ifHovered } from "@kodiui/kodiui";
 import React, { FC } from "react";
 import { SubTitle, theme } from "styles";
 import { BaseButton, ButtonProps } from "../BaseButton";
@@ -23,12 +23,18 @@ const activeStyle = css`
   box-shadow: ${theme.boxShadow[2]};
 `;
 
+const disabledStyle = css`
+  opacity: 0.5;
+`;
+
 const Button = styled(BaseButton)`
   background-color: ${theme.color.yellow};
   box-shadow: ${theme.boxShadow[0]};
   transition: ${theme.transition.base};
+  ${({ background, color }) => css({ background, color })};
   ${ifHovered(hoverSytle)};
+  ${ifDisabled(disabledStyle)};
   &: active {
     ${activeStyle};
-  }
+  };
 `;

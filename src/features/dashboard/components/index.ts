@@ -1,1 +1,2 @@
-export * from './MainCalendar'
+export * from './MainCalendar/MainCalendar'
+export * from './MainCalendar/CustomTile'

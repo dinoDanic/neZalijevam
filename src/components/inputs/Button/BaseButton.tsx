@@ -27,7 +27,7 @@ export const BaseButton: FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <Button {...props} disabled={loading === true}>
+    <Button {...props}>
       <Cluster alignItems={"center"}>
         {loading ? (
           <SubTitle color={theme.color.black}>loading..</SubTitle>
@@ -51,6 +51,5 @@ export const BaseButtonCss = css`
 `;
 
 const Button = styled.button<ButtonProps>`
-  ${BaseButtonCss}
-  ${({ background }) => background && css({ background: background })}
+  ${BaseButtonCss};
 `;

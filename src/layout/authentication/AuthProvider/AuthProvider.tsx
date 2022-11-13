@@ -31,10 +31,8 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   );
 
   useEffect(() => {
-    console.log("ll");
     if (ignoreRoute) return;
     if (data?.email) return;
-
     refetch();
   }, [asPath, token]);
 

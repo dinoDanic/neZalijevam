@@ -22,7 +22,7 @@ export const BaseBox: FC<BoxProps> = ({
       onClick={onClick}
       background={theme.color.white}
       modifiers={[
-        BorderMods({ border: "thick" }),
+        BorderMods({ border: "thick", borderColor:  theme.color.black }),
         CornerMods({ corners: theme.corners.base }),
         `box-shadow: ${boxShadow && theme.boxShadow[0]} `,
         modifiers,

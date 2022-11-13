@@ -1,0 +1,12 @@
+query nextSchedule {
+  nextSchedule {
+    id
+    date
+  }
+}
+
+mutation createSchedule($input: CreateScheduleInput!) {
+  createSchedule(input: $input) {
+    id
+  }
+}

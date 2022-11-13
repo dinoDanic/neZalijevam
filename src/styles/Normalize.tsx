@@ -15,6 +15,7 @@ const normalize = css`
     -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
   body {
+    /* background-color: ${theme.color.red800}; */
     background-color: ${theme.color.green};
   }
   a {

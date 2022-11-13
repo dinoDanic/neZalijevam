@@ -71,20 +71,26 @@ const reactCalendarCss = css`
     .react-calendar__month-view__days {
       button {
         height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        abbr {
+          z-index: 10;
+        }
       }
     }
 
     /* today */
     .react-calendar__tile--now {
       ${ColorMods({ color: theme.color.red })}
+      text-decoration: underline;
+      font-weight: bold;
     }
     /* active date */
     .react-calendar__tile--active {
-      ${ColorMods({
-        background: theme.color.yellow,
-        color: theme.color.white,
-      })}
-      ${CornerMods({ corners: 999 })}
+      font-weight: bold;
+      transform: scale(1.5)
     }
     .react-calendar__tile {
       ${SizeMods({ height: "34px" })}
