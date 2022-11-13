@@ -13,7 +13,7 @@ interface Props {
   selectedDate: Date | null;
 }
 
-export const WithoutSchedule: FC<Props> = ({  selectedDate }) => {
+export const WithoutSchedule: FC<Props> = ({ selectedDate }) => {
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
 
   const { mutate } = useCreateScheduleMutation(graphQlClient, {
