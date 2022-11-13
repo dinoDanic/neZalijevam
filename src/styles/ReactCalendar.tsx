@@ -2,7 +2,6 @@ import { css, Global } from "@emotion/react";
 import {
   BorderMods,
   ColorMods,
-  CornerMods,
   CursorMods,
   FlexMods,
   ifHovered,
@@ -31,6 +30,8 @@ const arrowStyle = css`
 
 const reactCalendarCss = css`
   .react-calendar {
+    max-width: 400px;
+    width: 400px;
     ${FlexMods.Parent({ direction: "column", gap: 5 })}
     button {
       ${normalizeButton}

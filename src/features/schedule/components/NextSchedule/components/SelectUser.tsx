@@ -31,7 +31,6 @@ export const SelectUser: FC<Props> = ({ selectedUser, setSelectedUser }) => {
     <ExpandAnimation active>
       <Stack gap={4}>
         <BaseBox
-          boxShadow
           space={4}
           modifiers={[
             SizeMods({
@@ -62,9 +61,6 @@ export const SelectUser: FC<Props> = ({ selectedUser, setSelectedUser }) => {
             })}
           </Stack>
         </BaseBox>
-        <PrimaryButton background={theme.color.pink} color={theme.color.black}>
-          Pick rendom
-        </PrimaryButton>
       </Stack>
     </ExpandAnimation>
   );

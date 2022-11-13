@@ -10,7 +10,7 @@ export interface BoxProps extends Mods, Props {
 
 export const BaseBox: FC<BoxProps> = ({
   children,
-  space = 8,
+  space = 4,
   boxShadow,
   modifiers,
   onClick,

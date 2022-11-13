@@ -2,6 +2,7 @@ import { GraphQLError } from "graphql";
 import { ExpandAnimation } from "layout";
 import React, { FC } from "react";
 import { TextBold, theme } from "styles";
+import { BaseBox } from "./box";
 
 export interface Props {
   error: GraphQLError | null;
@@ -25,7 +26,9 @@ export const GraphQlError: FC<Props> = ({ error }) => {
 
   return (
     <ExpandAnimation active={haveError}>
-      <TextBold color={theme.color.red}>{message}</TextBold>
+      <BaseBox boxShadow>
+        <TextBold color={theme.color.red}>{message}</TextBold>
+      </BaseBox>
     </ExpandAnimation>
   );
 };

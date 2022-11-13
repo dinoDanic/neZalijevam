@@ -10,3 +10,24 @@ mutation createSchedule($input: CreateScheduleInput!) {
     id
   }
 }
+
+query getScheduledUser {
+  getScheduledUser {
+    id
+    nickName
+  }
+}
+
+mutation updateSchedule($input: UpdateScheduleInput!) {
+  updateSchedule(input: $input) {
+    id
+  }
+}
+
+query getScheduleHistory($year: Int!, $month: Int!) {
+  getScheduleHistory(year: $year, month: $month) {
+    id
+    watered
+    date
+  }
+}

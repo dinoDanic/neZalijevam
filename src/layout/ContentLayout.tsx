@@ -1,18 +1,14 @@
 import styled from "@emotion/styled";
 import {
-  Box,
   Cluster,
-  ColorMods,
   Container,
   FlexMods,
   MarginMods,
-  PositionMods,
   SizeMods,
-  ZIndex,
 } from "@kodiui/kodiui";
+import { useBearStore } from "bear";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
-import { theme } from "styles";
 import { Menu } from "./menu";
 
 interface Props {
@@ -22,6 +18,8 @@ interface Props {
 const EMPTY_LAYOUT: string[] = [];
 
 export const ContentLayout: FC<Props> = ({ children }) => {
+  const background = useBearStore((store) => store.background);
+
   const { asPath } = useRouter();
 
   const emptyLayout = EMPTY_LAYOUT.includes(asPath);
@@ -36,9 +34,8 @@ export const ContentLayout: FC<Props> = ({ children }) => {
   }
 
   return (
-    <Body>
-      <Box
-        space={4}
+    <Body background={background}>
+      <Container
         modifiers={[
           SizeMods.FillScreen,
           FlexMods.Parent({ direction: "column" }),
@@ -46,15 +43,16 @@ export const ContentLayout: FC<Props> = ({ children }) => {
       >
         <Content>{children}</Content>
         <Menu />
-      </Box>
+      </Container>
     </Body>
   );
 };
 
-const Body = styled(Container)`
+const Body = styled(Container)<{ background: string }>`
   ${SizeMods.FillScreen};
-  ${FlexMods.Parent({ direction: "column" })}
-  ${ColorMods({ background: theme.color.green })}
+  ${FlexMods.Parent({ direction: "column" })};
+  transition: 1s ease all;
+  ${({ background }) => `background: ${background}`}
 `;
 
 const Content = styled(Cluster)`
