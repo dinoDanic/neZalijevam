@@ -14,7 +14,7 @@ interface LinkTagProps {
 }
 
 export const Link: FC<Props> = ({
-  color = theme.color.primary.Blue,
+  color = theme.color.red,
   children,
   ...props
 }) => {

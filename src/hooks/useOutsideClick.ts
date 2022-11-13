@@ -6,7 +6,6 @@ export const useOutsideClick = (
   const [clickOutside, setClickOutside] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleClickOutside(event: any) {
       if (!event) return;
       if (ref.current && !ref.current.contains(event.target)) {

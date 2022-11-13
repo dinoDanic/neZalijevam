@@ -31,7 +31,7 @@ export const theme: Theme = {
     2: "0 0px 0 0 #18191F ;",
   },
   transition: {
-    base: "0.1s ease all",
+    base: "0.2s ease all"
   },
   corners: {
     base: 4,

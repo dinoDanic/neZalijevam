@@ -52,14 +52,23 @@ export const Particles = () => {
       dummy.updateMatrix();
 
       // And apply the matrix to the instanced item
+      // @ts-ignore
       mesh.current.setMatrixAt(index, dummy.matrix);
     });
+    // @ts-ignore
     mesh.current.instanceMatrix.needsUpdate = true;
   });
 
   return (
     <>
-      <pointLight ref={light} distance={540} position={[0,0,0]} intensity={2} color="lightblue" />
+      {/* <pointLight */}
+      {/*   ref={light} */}
+      {/*   distance={540} */}
+      {/*   position={[0, 0, 0]} */}
+      {/*   intensity={2} */}
+      {/*   color="lightblue" */}
+      {/* /> */}
+      {/* @ts-ignore */}
       <instancedMesh ref={mesh} args={[null, null, count]}>
         <dodecahedronBufferGeometry args={[0.2, 0]} />
         <meshPhongMaterial color="green" />
